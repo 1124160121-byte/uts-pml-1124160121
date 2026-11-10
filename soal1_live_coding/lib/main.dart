@@ -10,19 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- import 'package:flutter/material.dart';
-
-// a. void main() memanggil runApp() dengan MyApp (StatelessWidget)
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // b. Konfigurasi MaterialApp
+    // b. Konfigurasi MaterialApp: title, debugShowCheckedModeBanner, theme, darkTheme, themeMode
     return MaterialApp(
       title: 'Profil Ande Saputra',
       debugShowCheckedModeBanner: false,
@@ -41,12 +29,21 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      // Bagian c akan mengarah ke ProfilePage() di bawah
+      // c. home mengarah ke ProfilePage (StatelessWidget)
       home: const ProfilePage(),
     );
   }
 }
-    return const Placeholder();
+
+// c. ProfilePage (StatelessWidget)
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Profil Mahasiswa')),
+      body: const Center(child: Text('Halaman Profil')),
+    );
   }
 }
-//membuat bagian a struktur MyApp untuk menjalankan program
