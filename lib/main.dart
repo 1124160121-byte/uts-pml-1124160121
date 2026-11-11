@@ -36,13 +36,24 @@ class MyApp extends StatelessWidget {
 }
 
 // c. ProfilePage (StatelessWidget)
+// Tahap 2 - Scaffold dan Head Profil (Materi 4 & 5)
+// a. ProfilePage memakai Scaffold dengan AppBar berjudul Profil Mahasiswa dan minimal satu IconButton di actions.
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profil Mahasiswa')),
+      appBar: AppBar(
+        title: const Text('Profil Mahasiswa'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Pengaturan',
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: const Center(child: Text('Halaman Profil')),
     );
   }
