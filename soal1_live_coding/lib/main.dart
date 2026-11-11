@@ -95,6 +95,40 @@ class ProfilePage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
+                // Tahap 3 - b. Tampilkan Card Kontak berisi minimal 4 InfoTile: email, nomor HP, kelas, dan akun GitHub.
+                Card(
+                  elevation: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Column(
+                      children: const [
+                        InfoTile(
+                          icon: Icons.email,
+                          label: 'Email',
+                          value: 'andesaputra@example.com',
+                        ),
+                        Divider(height: 1),
+                        InfoTile(
+                          icon: Icons.phone,
+                          label: 'Nomor HP',
+                          value: '+62 812-3456-7890',
+                        ),
+                        Divider(height: 1),
+                        InfoTile(
+                          icon: Icons.school,
+                          label: 'Kelas',
+                          value: 'TI-3A',
+                        ),
+                        Divider(height: 1),
+                        InfoTile(
+                          icon: Icons.code,
+                          label: 'Akun GitHub',
+                          value: 'github.com/1124160121-byte',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
