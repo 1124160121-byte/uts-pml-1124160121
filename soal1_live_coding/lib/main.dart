@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
 // c. Bagian kepala profil, rata tengah:
 //    - CircleAvatar berisi inisial nama atau Icon(Icons.person).
 //    - Nama lengkap, NIM, dan program studi dengan hierarki teks dari Theme.of(context).textTheme
+// d. Gunakan SizedBox untuk jarak antarbagian yang konsisten.
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -72,6 +73,7 @@ class ProfilePage extends StatelessWidget {
                   radius: 50,
                   child: Icon(Icons.person, size: 50),
                 ),
+                // d. Gunakan SizedBox untuk jarak antarbagian yang konsisten
                 const SizedBox(height: 16),
                 Text(
                   'Ande Saputra',
@@ -80,18 +82,19 @@ class ProfilePage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Text(
                   'NIM: 1124160121',
                   style: textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Text(
                   'Program Studi Teknik Informatika',
                   style: textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
+                const SizedBox(height: 24),
               ],
             ),
           ),
