@@ -39,11 +39,16 @@ class MyApp extends StatelessWidget {
 // Tahap 2 - Scaffold dan Head Profil (Materi 4 & 5)
 // a. ProfilePage memakai Scaffold dengan AppBar berjudul Profil Mahasiswa dan minimal satu IconButton di actions.
 // b. body tersusun: SafeArea -> SingleChildScrollView -> Padding -> Column (tidak boleh overflow di layar HP).
+// c. Bagian kepala profil, rata tengah:
+//    - CircleAvatar berisi inisial nama atau Icon(Icons.person).
+//    - Nama lengkap, NIM, dan program studi dengan hierarki teks dari Theme.of(context).textTheme
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil Mahasiswa'),
@@ -61,8 +66,32 @@ class ProfilePage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                Text('Halaman Profil'),
+              children: [
+                const SizedBox(width: double.infinity),
+                const CircleAvatar(
+                  radius: 50,
+                  child: Icon(Icons.person, size: 50),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Ande Saputra',
+                  style: textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'NIM: 1124160121',
+                  style: textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Program Studi Teknik Informatika',
+                  style: textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
           ),
