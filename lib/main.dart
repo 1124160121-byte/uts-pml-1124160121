@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
 // c. ProfilePage (StatelessWidget)
 // Tahap 2 - Scaffold dan Head Profil (Materi 4 & 5)
 // a. ProfilePage memakai Scaffold dengan AppBar berjudul Profil Mahasiswa dan minimal satu IconButton di actions.
+// b. body tersusun: SafeArea -> SingleChildScrollView -> Padding -> Column (tidak boleh overflow di layar HP).
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -54,7 +55,19 @@ class ProfilePage extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(child: Text('Halaman Profil')),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Text('Halaman Profil'),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
