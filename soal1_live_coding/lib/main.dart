@@ -105,7 +105,7 @@ class ProfilePage extends StatelessWidget {
                         InfoTile(
                           icon: Icons.email,
                           label: 'Email',
-                          value: 'andesaputra@example.com',
+                          value: 'andesaputra94@gmail.com',
                         ),
                         Divider(height: 1),
                         InfoTile(
@@ -117,13 +117,42 @@ class ProfilePage extends StatelessWidget {
                         InfoTile(
                           icon: Icons.school,
                           label: 'Kelas',
-                          value: 'TI-3A',
+                          value: 'TI-24SE SH',
                         ),
                         Divider(height: 1),
                         InfoTile(
                           icon: Icons.code,
                           label: 'Akun GitHub',
                           value: 'github.com/1124160121-byte',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Tahap 3 - c. Tampilkan Card Keahlian/Hobi berisi minimal 3 InfoTile.
+                Card(
+                  elevation: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Column(
+                      children: const [
+                        InfoTile(
+                          icon: Icons.computer,
+                          label: 'Keahlian Utama',
+                          value: 'Mobile App Development (Flutter & Dart)',
+                        ),
+                        Divider(height: 1),
+                        InfoTile(
+                          icon: Icons.sports_soccer,
+                          label: 'Hobi Olahraga',
+                          value: 'Futsal & Bulu Tangkis',
+                        ),
+                        Divider(height: 1),
+                        InfoTile(
+                          icon: Icons.music_note,
+                          label: 'Minat & Hiburan',
+                          value: 'Mendengarkan Musik & Membaca Buku',
                         ),
                       ],
                     ),
