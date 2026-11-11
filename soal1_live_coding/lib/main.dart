@@ -163,6 +163,19 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
+      // Tahap 3 - d. Tambahkan floatingActionButton yang menampilkan SnackBar "Terima kasih telah melihat profil saya" melalui ScaffoldMessenger.of(context).
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Pesan',
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Terima kasih telah melihat profil saya'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+        },
+        child: const Icon(Icons.thumb_up),
+      ),
     );
   }
 }
