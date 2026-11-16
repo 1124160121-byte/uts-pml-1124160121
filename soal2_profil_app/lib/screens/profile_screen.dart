@@ -14,6 +14,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late UserProfile _currentProfile;
+  int _currentNavIndex = 0;
 
   @override
   void initState() {
@@ -34,6 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (updatedData != null) {
       setState(() {
         _currentProfile = updatedData;
+        _currentNavIndex = 0;
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -44,17 +46,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         );
       }
+    } else {
+      setState(() {
+        _currentNavIndex = 0;
+      });
     }
   }
 
   // Fungsi navigasi ke Halaman Tentang Saya
-  void _navigateToAboutScreen() {
-    Navigator.push(
+  void _navigateToAboutScreen() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const AboutScreen(),
       ),
     );
+    if (mounted) {
+      setState(() {
+        _currentNavIndex = 0;
+      });
+    }
+  }
+
+  void _onBottomNavTapped(int index) {
+    if (index == 0) {
+      setState(() {
+        _currentNavIndex = 0;
+      });
+    } else if (index == 1) {
+      setState(() {
+        _currentNavIndex = 1;
+      });
+      _navigateToEditProfile();
+    } else if (index == 2) {
+      setState(() {
+        _currentNavIndex = 2;
+      });
+      _navigateToAboutScreen();
+    }
   }
 
   @override
@@ -76,6 +105,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
             onPressed: _navigateToEditProfile,
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage(_currentProfile.imageAsset),
+                child: _currentProfile.imageAsset.isEmpty
+                    ? const Icon(Icons.person, size: 40, color: Colors.grey)
+                    : null,
+              ),
+              accountName: Text(
+                _currentProfile.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              accountEmail: Text(_currentProfile.email),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profil'),
+              selected: true,
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Edit Profil'),
+              onTap: () {
+                Navigator.pop(context);
+                _navigateToEditProfile();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info_outline),
+              title: const Text('Tentang Saya'),
+              onTap: () {
+                Navigator.pop(context);
+                _navigateToAboutScreen();
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.redAccent),
+              title: const Text(
+                'Keluar',
+                style: TextStyle(color: Colors.redAccent),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -313,6 +405,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 30),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _navigateToEditProfile,
+        tooltip: 'Edit Profil',
+        child: const Icon(Icons.edit),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentNavIndex,
+        onTap: _onBottomNavTapped,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.edit),
+            label: 'Edit',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'Tentang',
+          ),
+        ],
       ),
     );
   }
