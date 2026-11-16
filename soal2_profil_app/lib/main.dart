@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/login_screen.dart';
+import 'screens/login_page.dart';
+import 'screens/about_page.dart';
 
 // Global ValueNotifier untuk mengelola ThemeMode (light/dark) di seluruh aplikasi secara langsung
 final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier<ThemeMode>(ThemeMode.light);
@@ -74,7 +75,13 @@ class MyApp extends StatelessWidget {
               color: const Color(0xFF1E1E1E),
             ),
           ),
-          home: const LoginScreen(),
+          // Definisi Routes (MaterialApp, tema, routes)
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const LoginPage(),
+            '/login': (context) => const LoginPage(),
+            '/about': (context) => const AboutPage(),
+          },
         );
       },
     );

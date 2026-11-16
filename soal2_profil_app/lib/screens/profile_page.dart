@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
-import '../models/user_profile.dart';
-import 'edit_profile_screen.dart';
-import 'about_screen.dart';
+import '../models/profile.dart';
+import '../widgets/info_tile.dart';
+import 'edit_profile_page.dart';
+import 'about_page.dart';
 
-class ProfileScreen extends StatefulWidget {
-  final UserProfile profile;
+class ProfilePage extends StatefulWidget {
+  final Profile profile;
 
-  const ProfileScreen({super.key, required this.profile});
+  const ProfilePage({super.key, required this.profile});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  late UserProfile _currentProfile;
+class _ProfilePageState extends State<ProfilePage> {
+  late Profile _currentProfile;
   int _currentNavIndex = 0;
 
   @override
@@ -25,10 +26,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // Fungsi navigasi ke Halaman Edit Profil & update data baru via setState()
   void _navigateToEditProfile() async {
-    final updatedData = await Navigator.push<UserProfile>(
+    final updatedData = await Navigator.push<Profile>(
       context,
       MaterialPageRoute(
-        builder: (context) => EditProfileScreen(profile: _currentProfile),
+        builder: (context) => EditProfilePage(profile: _currentProfile),
       ),
     );
 
@@ -59,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const AboutScreen(),
+        builder: (context) => const AboutPage(),
       ),
     );
     if (mounted) {
@@ -287,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const Divider(indent: 24, endIndent: 24),
             const SizedBox(height: 8),
 
-            // Bagian Kontak memakai Card + ListTile dengan ikon
+            // Bagian Kontak memakai widget InfoTile (widgets/info_tile.dart)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -305,94 +306,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const SizedBox(height: 6),
 
-                  // Card Email
-                  Card(
-                    elevation: 1.5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    margin: const EdgeInsets.symmetric(vertical: 6),
-                    child: ListTile(
-                      leading: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.red.shade50,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(Icons.email_outlined, color: Colors.redAccent),
-                      ),
-                      title: const Text(
-                        'Email',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      subtitle: Text(
-                        _currentProfile.email,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                  // InfoTile Email
+                  InfoTile(
+                    icon: Icons.email_outlined,
+                    iconColor: Colors.redAccent,
+                    title: 'Email',
+                    value: _currentProfile.email,
                   ),
 
-                  // Card Nomor HP
-                  Card(
-                    elevation: 1.5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    margin: const EdgeInsets.symmetric(vertical: 6),
-                    child: ListTile(
-                      leading: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade50,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(Icons.phone_outlined, color: Colors.green),
-                      ),
-                      title: const Text(
-                        'Nomor HP / WhatsApp',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      subtitle: Text(
-                        _currentProfile.phone,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                  // InfoTile Nomor HP
+                  InfoTile(
+                    icon: Icons.phone_outlined,
+                    iconColor: Colors.green,
+                    title: 'Nomor HP / WhatsApp',
+                    value: _currentProfile.phone,
                   ),
 
-                  // Card Akun GitHub
-                  Card(
-                    elevation: 1.5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    margin: const EdgeInsets.symmetric(vertical: 6),
-                    child: ListTile(
-                      leading: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.purple.shade50,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(Icons.code_rounded, color: Colors.purple),
-                      ),
-                      title: const Text(
-                        'Akun GitHub',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      subtitle: Text(
-                        _currentProfile.github,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                  // InfoTile GitHub
+                  InfoTile(
+                    icon: Icons.code_rounded,
+                    iconColor: Colors.purple,
+                    title: 'Akun GitHub',
+                    value: _currentProfile.github,
                   ),
                 ],
               ),
@@ -473,3 +408,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
+// Alias kompatibilitas
+typedef ProfileScreen = ProfilePage;

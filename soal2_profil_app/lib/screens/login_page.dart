@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../main.dart';
-import '../models/user_profile.dart';
-import 'profile_screen.dart';
+import '../models/profile.dart';
+import 'profile_page.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = false;
     });
 
-    final defaultProfile = UserProfile(
+    final defaultProfile = Profile(
       name: 'Ande Saputra',
       nim: '1124160121',
       programStudi: 'Teknik Informatika',
@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => ProfileScreen(profile: defaultProfile),
+        builder: (context) => ProfilePage(profile: defaultProfile),
       ),
     );
   }
@@ -120,7 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'Silakan login untuk mengakses profil Anda',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                    ),
                   ),
                   const SizedBox(height: 32),
 
@@ -224,3 +227,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+// Alias kompatibilitas
+typedef LoginScreen = LoginPage;

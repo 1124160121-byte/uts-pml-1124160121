@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../models/user_profile.dart';
+import '../models/profile.dart';
 
-class EditProfileScreen extends StatefulWidget {
-  final UserProfile profile;
+class EditProfilePage extends StatefulWidget {
+  final Profile profile;
 
-  const EditProfileScreen({super.key, required this.profile});
+  const EditProfilePage({super.key, required this.profile});
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
 
   late TextEditingController _nameController;
@@ -56,7 +56,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
 
     // Buat objek data baru dari form input
-    final updatedProfile = UserProfile(
+    final updatedProfile = Profile(
       name: _nameController.text.trim(),
       nim: _nimController.text.trim(),
       programStudi: _prodiController.text.trim(),
@@ -234,3 +234,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 }
+
+// Alias kompatibilitas
+typedef EditProfileScreen = EditProfilePage;

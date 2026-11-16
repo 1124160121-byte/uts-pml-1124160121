@@ -1,4 +1,4 @@
-class UserProfile {
+class Profile {
   String name;
   String nim;
   String programStudi;
@@ -9,7 +9,17 @@ class UserProfile {
   String github;
   String imageAsset;
 
-  UserProfile({
+  // Getter dan Setter alias agar sesuai soal (# class Profile (nama, nim, prodi, email, hp, ...))
+  String get nama => name;
+  set nama(String val) => name = val;
+
+  String get prodi => programStudi;
+  set prodi(String val) => programStudi = val;
+
+  String get hp => phone;
+  set hp(String val) => phone = val;
+
+  Profile({
     required this.name,
     required this.nim,
     required this.programStudi,
@@ -21,3 +31,6 @@ class UserProfile {
     this.imageAsset = 'assets/images/profile.jpg',
   });
 }
+
+// Alias kompatibilitas
+typedef UserProfile = Profile;
