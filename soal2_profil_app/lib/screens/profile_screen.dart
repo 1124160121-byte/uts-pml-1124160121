@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/user_profile.dart';
+import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final UserProfile profile;
@@ -19,6 +20,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _currentProfile = widget.profile;
   }
 
+  // Fungsi navigasi ke Halaman Edit Profil & update data baru via setState()
+  void _navigateToEditProfile() async {
+    final updatedData = await Navigator.push<UserProfile>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditProfileScreen(profile: _currentProfile),
+      ),
+    );
+
+    // Jika dataBaru dikembalikan dari Navigator.pop(context, dataBaru), perbarui state
+    if (updatedData != null) {
+      setState(() {
+        _currentProfile = updatedData;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Profil berhasil diperbarui!'),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +53,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text('Profil Pengguna'),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            tooltip: 'Edit Profil',
+            onPressed: _navigateToEditProfile,
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -81,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 14),
 
-            // Bio singkat dalam kontainer rapi
+            // Bio singkat
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Container(
@@ -214,6 +248,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Tombol Edit Profil
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: OutlinedButton.icon(
+                  onPressed: _navigateToEditProfile,
+                  icon: const Icon(Icons.edit_outlined),
+                  label: const Text('Edit Profil'),
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 30),
