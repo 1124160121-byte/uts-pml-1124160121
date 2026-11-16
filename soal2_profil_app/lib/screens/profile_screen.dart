@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../models/user_profile.dart';
 import 'edit_profile_screen.dart';
 import 'about_screen.dart';
@@ -92,8 +93,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text('Profil Pengguna'),
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
+          // Tombol Mode Gelap / Terang langsung di AppBar
+          ValueListenableBuilder<ThemeMode>(
+            valueListenable: themeModeNotifier,
+            builder: (context, currentMode, _) {
+              final isDark = currentMode == ThemeMode.dark;
+              return IconButton(
+                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                tooltip: isDark ? 'Ubah ke Mode Terang' : 'Ubah ke Mode Gelap',
+                onPressed: () {
+                  themeModeNotifier.value =
+                      isDark ? ThemeMode.light : ThemeMode.dark;
+                },
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.info_outline),
             tooltip: 'Tentang Saya',
@@ -152,6 +167,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onTap: () {
                 Navigator.pop(context);
                 _navigateToAboutScreen();
+              },
+            ),
+            const Divider(),
+            // Switch Mode Gelap di dalam Drawer
+            ValueListenableBuilder<ThemeMode>(
+              valueListenable: themeModeNotifier,
+              builder: (context, currentMode, _) {
+                final isDark = currentMode == ThemeMode.dark;
+                return SwitchListTile(
+                  secondary: Icon(
+                    isDark ? Icons.dark_mode : Icons.light_mode,
+                    color: isDark ? Colors.amber : Colors.blueAccent,
+                  ),
+                  title: const Text('Mode Gelap'),
+                  subtitle: Text(
+                    isDark ? 'Tema gelap aktif' : 'Tema terang aktif',
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  value: isDark,
+                  onChanged: (bool val) {
+                    themeModeNotifier.value =
+                        val ? ThemeMode.dark : ThemeMode.light;
+                  },
+                );
               },
             ),
             const Divider(),
@@ -217,7 +256,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: Colors.grey[700],
+                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                 ),
               ),
             ),
@@ -229,7 +268,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.08),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
@@ -238,7 +277,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(
                     fontSize: 14,
                     fontStyle: FontStyle.italic,
-                    color: Colors.grey[800],
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
