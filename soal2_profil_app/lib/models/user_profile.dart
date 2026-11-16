@@ -18,6 +18,6 @@ class UserProfile {
     required this.email,
     required this.phone,
     required this.github,
-    this.imageAsset = 'assets/images/profile.png',
+    this.imageAsset = 'assets/images/profile.jpg',
   });
 }

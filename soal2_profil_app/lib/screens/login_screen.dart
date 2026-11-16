@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
           : 'andesaputra@example.com',
       phone: '0895331386142',
       github: 'github.com/andesaputra',
-      imageAsset: 'assets/images/profile.png',
+      imageAsset: 'assets/images/profile.jpg',
     );
 
     // 3. Navigasi menggunakan pushReplacement sesuai pola Materi 5
