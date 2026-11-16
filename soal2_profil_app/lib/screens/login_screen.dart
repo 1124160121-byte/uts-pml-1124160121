@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/user_profile.dart';
 import 'profile_screen.dart';
 
@@ -45,10 +46,17 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     final defaultProfile = UserProfile(
-      name: 'John Doe',
-      email: _emailController.text.trim(),
-      phone: '081234567890',
-      bio: 'Mahasiswa Teknik Informatika yang antusias belajar Flutter.',
+      name: 'Ande Saputra',
+      nim: '1124160121',
+      programStudi: 'Teknik Informatika',
+      kelas: 'TI24SE SH',
+      bio: 'Mahasiswa Teknik Informatika yang antusias belajar pemrograman mobile dengan Flutter.',
+      email: _emailController.text.trim().isNotEmpty
+          ? _emailController.text.trim()
+          : 'andesaputra@example.com',
+      phone: '0895331386142',
+      github: 'github.com/andesaputra',
+      imageAsset: 'assets/images/profile.png',
     );
 
     // 3. Navigasi menggunakan pushReplacement sesuai pola Materi 5
@@ -66,7 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
             child: Form(
               key: _formKey,
               child: Column(
@@ -82,19 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Text(
                     'Selamat Datang',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Silakan login untuk mengakses profil Anda',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[600],
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                   ),
                   const SizedBox(height: 32),
 
@@ -114,7 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (value == null || value.trim().isEmpty) {
                         return 'Email wajib diisi';
                       }
-                      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                      final emailRegex = RegExp(
+                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                      );
                       if (!emailRegex.hasMatch(value.trim())) {
                         return 'Format email tidak valid';
                       }
@@ -133,7 +140,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                         ),
                         onPressed: () {
                           setState(() {
@@ -178,7 +187,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           : const Text(
                               'Login',
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                     ),
                   ),
