@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
-import 'screens/login_page.dart';
+import 'models/profile.dart';
+import 'screens/profile_page.dart';
 import 'screens/about_page.dart';
 
 // Global ValueNotifier untuk mengelola ThemeMode (light/dark) di seluruh aplikasi secara langsung
 final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier<ThemeMode>(ThemeMode.light);
+
+// Data profil default
+final Profile defaultProfile = Profile(
+  name: 'Ande Saputra',
+  nim: '1124160121',
+  programStudi: 'Teknik Informatika',
+  kelas: 'TI24SE SH',
+  bio: 'Mahasiswa Teknik Informatika yang antusias belajar pemrograman mobile dengan Flutter.',
+  email: 'andesaputra@example.com',
+  phone: '0895331386142',
+  github: 'github.com/andesaputra',
+  imageAsset: 'assets/images/profile.jpg',
+);
 
 void main() {
   runApp(const MyApp());
@@ -75,11 +89,10 @@ class MyApp extends StatelessWidget {
               color: const Color(0xFF1E1E1E),
             ),
           ),
-          // Definisi Routes (MaterialApp, tema, routes)
+          // Definisi Routes langsung menampilkan Halaman Profil utama
           initialRoute: '/',
           routes: {
-            '/': (context) => const LoginPage(),
-            '/login': (context) => const LoginPage(),
+            '/': (context) => ProfilePage(profile: defaultProfile),
             '/about': (context) => const AboutPage(),
           },
         );
