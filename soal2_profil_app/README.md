@@ -5,15 +5,17 @@ Aplikasi Flutter profil pengguna sederhana yang mencakup fitur autentikasi login
 ---
 
 ## 👤 Identitas Mahasiswa
-- **Nama** : [Ande Saputra]
-- **NIM** : [1124160121]
-- **Kelas / Mata Kuliah** : [TI24SE SH/Mobile Apps]
+- **Nama:** Ande Saputra
+- **NIM:** 1124160121
+- **Kelas:** TI24SE SH
+- **Program Studi:** Software Engineering
+- **Repository GitHub:** [https://github.com/1124160121-byte/uts-pml-1124160121.git](https://github.com/1124160121-byte/uts-pml-1124160121.git)
 
 ---
 
 ## 🎥 Link Video Demo YouTube
 Tonton video demo aplikasi di YouTube melalui link berikut:  
-🔗 **[Link Video Demo YouTube](https://youtube.com/...)** *(Ganti dengan link video Anda)*
+🔗 **[Video Demo Aplikasi di YouTube](https://youtu.be/RhfNi2fFEPs?si=9EF4kJz65q5RsQ8x)**
 
 ---
 
