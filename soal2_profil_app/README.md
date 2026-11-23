@@ -20,13 +20,23 @@ Tonton video demo aplikasi di YouTube melalui link berikut:
 ---
 
 ## 📱 Screenshot Aplikasi
-Berikut adalah tampilan layar aplikasi (minimal 3 halaman):
 
-| 1. Halaman Login | 2. Halaman Profil | 3. Halaman Edit Profil |
-| :---: | :---: | :---: |
-| ![Login](screenshots/login.png) | ![Profil](screenshots/profil.png) | ![Edit Profil](screenshots/edit_profil.png) |
+Berikut adalah dokumentasi tampilan layar aplikasi:
 
-> *Catatan: Simpan file screenshot aplikasi Anda di folder `screenshots/` dengan nama `login.png`, `profil.png`, dan `edit_profil.png`.*
+### 1. Gambar Profil
+Menampilkan halaman profil utama pengguna lengkap dengan avatar, identitas mahasiswa, informasi kontak, dan aksi navigasi.
+
+![Gambar Profil](screenshots/profil.png)
+
+### 2. Edit Profil
+Menampilkan formulir pengubahan data profil lengkap dengan validasi input interaktif.
+
+![Edit Profil](screenshots/edit_profil.png)
+
+### 3. Daftar Fitur
+Menampilkan panel navigasi samping (Drawer) yang memuat menu navigasi, switch tema Gelap/Terang, dan fitur-fitur aplikasi.
+
+![Daftar Fitur](screenshots/daftar_fitur.png)
 
 ---
 

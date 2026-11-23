@@ -15,15 +15,24 @@ Tonton video demo aplikasi di YouTube melalui link berikut:
 
 ---
 
-## 📱 Screenshot Aplikasi (Minimal 3 Halaman)
+## 📱 Screenshot Aplikasi
 
-Berikut adalah tampilan layar aplikasi pada Soal 2 (`soal2_profil_app`):
+Berikut adalah dokumentasi tampilan layar aplikasi:
 
-| 1. Halaman Login | 2. Halaman Profil | 3. Halaman Edit Profil |
-| :---: | :---: | :---: |
-| ![Login](soal2_profil_app/screenshots/login.png) | ![Profil](soal2_profil_app/screenshots/profil.png) | ![Edit Profil](soal2_profil_app/screenshots/edit_profil.png) |
+### 1. Gambar Profil
+Menampilkan halaman profil utama pengguna lengkap dengan avatar, identitas mahasiswa, informasi kontak, dan aksi navigasi.
 
-> *Catatan: Letakkan file gambar tangkapan layar pada folder `soal2_profil_app/screenshots/` dengan nama file `login.png`, `profil.png`, dan `edit_profil.png`.*
+![Gambar Profil](soal2_profil_app/screenshots/profil.png)
+
+### 2. Edit Profil
+Menampilkan formulir pengubahan data profil lengkap dengan validasi input interaktif.
+
+![Edit Profil](soal2_profil_app/screenshots/edit_profil.png)
+
+### 3. Daftar Fitur
+Menampilkan panel navigasi samping (Drawer) yang memuat menu navigasi, switch tema Gelap/Terang, dan fitur-fitur aplikasi.
+
+![Daftar Fitur](soal2_profil_app/screenshots/daftar_fitur.png)
 
 ---
 
